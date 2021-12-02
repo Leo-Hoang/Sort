@@ -4,17 +4,19 @@ import java.util.*;
 
 public class Menu {
 
-    public static <T> void menu() {
-        long startTime;
-        long endTime;
-        displayFirstMenu();
-        Scanner sc = new Scanner(System.in);
-        String inp = sc.nextLine();
+    static long startTime;
+    static long endTime;
+    static Scanner sc;
+    static String inp;
 
+    public static <T> void menu() {
+
+        displayFirstMenu();
+        displaySecondMenu();
         // BUBBLE SORT
         if (inp.equals("1"))
         {
-            displaySecondMenu();
+            displayThirdMenu();
             BubbleSort bs = new BubbleSort();
 
             // ARRAY
@@ -51,7 +53,7 @@ public class Menu {
         // QUICKSORT
         else if (inp.equals("2"))
         {
-            displaySecondMenu();
+            displayThirdMenu();
             QuickSort qs = new QuickSort();
 
             // ARRAY
@@ -64,13 +66,14 @@ public class Menu {
                 endTime = System.nanoTime();
                 System.out.println("Time taken: " + (endTime - startTime));
             }
-// HI
+
             // ARRAYLIST
             else if (inp.equals("2"))
             {
-                ArrayList<Integer> quickList = new ArrayList<>(List.of(5,6,1,3,0,2,8,7,9,4));
+                //ArrayList<Integer> quickList = new ArrayList<>(List.of(5,6,1,3,0,2,8,7,9,4));
+                ArrayList<T> quickList = new ArrayList<T>((Collection<? extends T>) List.of(5,6,1,3,0,2,8,7,9,4));
                 startTime = System.nanoTime();
-                qs.sort(quickList);
+                qs.sort((ArrayList<Container>) quickList);
                 System.out.println(quickList);
                 endTime = System.nanoTime();
                 System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
@@ -92,24 +95,24 @@ public class Menu {
     private static void displayFirstMenu()
     {
         System.out.println("How many numbers would you like to have?");
-        Scanner sc = new Scanner(System.in);
-        String inp = sc.nextLine();
+        sc = new Scanner(System.in);
+        inp = sc.nextLine();
     }
 
     private static void displaySecondMenu()
     {
         System.out.println("Which sort algorithm would you like to use?");
         System.out.println("Input 1: Bubble Sort || Input 2: Quick Sort");
-        Scanner sc = new Scanner(System.in);
-        String inp = sc.nextLine();
+        sc = new Scanner(System.in);
+        inp = sc.nextLine();
     }
 
     private static void displayThirdMenu()
     {
         System.out.println("Would you like to use an Array or ArrayList?");
         System.out.println("Input 1: Array || Input 2: ArrayList?");
-        Scanner sc = new Scanner(System.in);
-        String inp = sc.nextLine();
+        sc = new Scanner(System.in);
+        inp = sc.nextLine();
     }
 
 
