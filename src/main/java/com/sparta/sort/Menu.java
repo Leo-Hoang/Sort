@@ -64,7 +64,7 @@ public class Menu {
                 endTime = System.nanoTime();
                 System.out.println("Time taken: " + (endTime - startTime));
             }
-
+// HI
             // ARRAYLIST
             else if (inp.equals("2"))
             {
