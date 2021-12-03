@@ -1,5 +1,4 @@
 package com.sparta.sort;
-
 import java.util.*;
 
 public class Menu {
@@ -8,8 +7,9 @@ public class Menu {
     static long endTime;
     static Scanner sc;
     static String inp;
+    static int size = 0;
 
-    public static <T> void menu() {
+    public static void menu() {
 
         displayFirstMenu();
         displaySecondMenu();
@@ -33,8 +33,12 @@ public class Menu {
             // ARRAYLIST
             else if (inp.equals("2"))
             {
-                ArrayList<T> bubbleList = new ArrayList<T>((Collection<? extends T>) List.of(5,6,1,3,0,2,8,7,9,4));
+                //ArrayList<Integer> bubbleList = new ArrayList<Integer>(List.of(5,6,1,3,0,2,8,7,9,4));
+                //ArrayList<T> bubbleList = new ArrayList<T>((Collection<? extends T>) List.of(5,6,1,3,0,2,8,7,9,4));
+
+                ArrayList<Container> bubbleList = Generate.generateArrayList(size);
                 startTime = System.nanoTime();
+                System.out.println(bubbleList);
                 bs.sort((ArrayList<Container>) bubbleList);
                 System.out.println(bubbleList);
                 endTime = System.nanoTime();
@@ -71,9 +75,11 @@ public class Menu {
             else if (inp.equals("2"))
             {
                 //ArrayList<Integer> quickList = new ArrayList<>(List.of(5,6,1,3,0,2,8,7,9,4));
-                ArrayList<T> quickList = new ArrayList<T>((Collection<? extends T>) List.of(5,6,1,3,0,2,8,7,9,4));
+                //ArrayList<T> quickList = new ArrayList<T>((Collection<? extends T>) List.of(5,6,1,3,0,2,8,7,9,4));
+
+                ArrayList<Container> quickList = Generate.generateArrayList(size);
                 startTime = System.nanoTime();
-                qs.sort((ArrayList<Container>) quickList);
+                qs.sort(quickList);
                 System.out.println(quickList);
                 endTime = System.nanoTime();
                 System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
@@ -94,9 +100,24 @@ public class Menu {
 
     private static void displayFirstMenu()
     {
-        System.out.println("How many numbers would you like to have?");
-        sc = new Scanner(System.in);
-        inp = sc.nextLine();
+        boolean gate = false;
+        while (gate == false)
+        {
+            System.out.println("How many numbers would you like to have?");
+            sc = new Scanner(System.in);
+            inp = sc.nextLine().trim();
+            try {
+                size = Integer.parseInt(inp);
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR! Must be a number!"); }
+            if (size > 0) {
+                gate = true;
+            }
+            else {
+                System.out.println("Size of list must be at least 1!");
+            }
+        }
+
     }
 
     private static void displaySecondMenu()
@@ -114,9 +135,5 @@ public class Menu {
         sc = new Scanner(System.in);
         inp = sc.nextLine();
     }
-
-
-
-
 
 }
