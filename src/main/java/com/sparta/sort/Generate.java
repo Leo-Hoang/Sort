@@ -10,7 +10,7 @@ public class Generate {
         for (int i = 0; i < size; i++)
         {
             Random random = new Random();
-            Container c = new Container(random.nextInt(100 - (-100)) - 100);
+            Container c = new Container(random.nextInt(100 + 1 - (-100)) - 100);
             arrList.add(c);
         };
         return arrList;
@@ -22,7 +22,7 @@ public class Generate {
         for (int i = 0; i < size; i++)
         {
             Random random = new Random();
-            arr[i] = random.nextInt(100 - (-100)) - 100;
+            arr[i] = random.nextInt(100 + 1 - (-100)) - 100;
         };
         return arr;
     }
