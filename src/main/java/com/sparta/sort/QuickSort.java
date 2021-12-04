@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 public class QuickSort implements Sort {
 
-    public int[] sort(int[] array)
+    public void sort(int[] array)
     {
         quickSort(array, 0, array.length -1);
-        return array;
     }
 
-    public ArrayList<Container> sort(ArrayList<Container> list) {
+    public void sort(ArrayList<Container> list) {
         quickSort(list, 0, list.size() -1);
-        return list;
     }
 
     private void quickSort(int[] arr, int low, int high) {
@@ -46,7 +44,6 @@ public class QuickSort implements Sort {
         int middle = low + (high - low) / 2;
         Container pivot = arr.get(middle);
         int i = low, y = high;
-
 
         while (i <= y)
         {

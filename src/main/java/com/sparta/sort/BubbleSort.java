@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BubbleSort implements Sort{
 
-    public int[] sort(int[] array)
+    public void sort(int[] array)
     {
         int temp;
         for(int y = array.length; y > 0; y--)
@@ -20,10 +20,9 @@ public class BubbleSort implements Sort{
                 }
             }
         }
-        return array;
     }
 
-    public ArrayList<Container> sort(ArrayList<Container> list)
+    public void sort(ArrayList<Container> list)
     {
         Container temp;
         for(int y = list.size(); y > 0; y--)
@@ -39,7 +38,6 @@ public class BubbleSort implements Sort{
                 }
             }
         }
-        return list;
     }
 
 }

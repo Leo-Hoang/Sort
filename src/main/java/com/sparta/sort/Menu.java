@@ -26,9 +26,9 @@ public class Menu {
                 int[] bubbleArray = Generate.generateArray(size);
                 startTime = System.nanoTime();
                 bs.sort(bubbleArray);
-                System.out.println(Arrays.toString(bubbleArray));
                 endTime = System.nanoTime();
                 System.out.println("Time taken: " + (endTime - startTime));
+                System.out.println(Arrays.toString(bubbleArray));
             }
 
             // ARRAYLIST
@@ -85,12 +85,10 @@ public class Menu {
                 System.out.println(quickList);
             }
         }
-
     }
 
     private static void displayFirstMenu()
     {
-
         while (infiniteLoop)
         {
             System.out.println("How many numbers would you like to have?");
