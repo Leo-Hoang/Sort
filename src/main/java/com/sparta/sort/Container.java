@@ -13,9 +13,6 @@ public class Container <T extends Comparable<T>> implements Comparable<Container
     }
 
     @Override
-    public String toString()
-    {
-        return getValue().toString();
-    }
+    public String toString() { return getValue().toString(); }
 
 }

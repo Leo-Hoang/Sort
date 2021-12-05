@@ -6,6 +6,7 @@ public class BubbleSort implements Sort{
 
     public void sort(int[] array)
     {
+        System.out.println("Sorting an Array with Bubble Sort...");
         int temp;
         for(int y = array.length; y > 0; y--)
         {
@@ -24,6 +25,7 @@ public class BubbleSort implements Sort{
 
     public void sort(ArrayList<Container> list)
     {
+        System.out.println("Sorting an ArrayList with Bubble Sort...");
         Container temp;
         for(int y = list.size(); y > 0; y--)
         {

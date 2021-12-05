@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TreeSortTest {
+public class TreeSortArrayTest {
 
     private TreeSort ts;
     @BeforeEach
@@ -54,5 +54,4 @@ public class TreeSortTest {
         String compare2 = Arrays.toString(correct);
         assertEquals(compare1, compare2);
     }
-
 }

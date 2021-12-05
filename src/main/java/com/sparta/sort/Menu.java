@@ -1,5 +1,6 @@
 package com.sparta.sort;
 import java.util.*;
+
 public class Menu {
 
     static long startTime;
@@ -13,8 +14,8 @@ public class Menu {
 
         displayFirstMenu();
         displaySecondMenu();
-        // BUBBLE SORT
 
+        // BUBBLE SORT
         if (inp.equals("1"))
         {
             BubbleSort bs = new BubbleSort();
@@ -24,11 +25,12 @@ public class Menu {
             if (inp.equals("1"))
             {
                 int[] bubbleArray = Generate.generateArray(size);
+                SortLog.log(Arrays.toString(bubbleArray));
                 startTime = System.nanoTime();
                 bs.sort(bubbleArray);
                 endTime = System.nanoTime();
-                System.out.println("Time taken: " + (endTime - startTime));
-                System.out.println(Arrays.toString(bubbleArray));
+                SortLog.log("Time taken to sort array with Bubble Sort: " + (endTime - startTime));
+                SortLog.log(Arrays.toString(bubbleArray));
             }
 
             // ARRAYLIST
@@ -50,7 +52,7 @@ public class Menu {
             }
         }
 
-        // QUICKSORT
+        // QUICK SORT
         else if (inp.equals("2"))
         {
             QuickSort qs = new QuickSort();
@@ -85,6 +87,42 @@ public class Menu {
                 System.out.println(quickList);
             }
         }
+
+        // TREE SORT
+        else if (inp.equals("3"))
+        {
+            TreeSort ts = new TreeSort();
+            displayThirdMenu();
+
+            // ARRAY
+            if (inp.equals("1"))
+            {
+                int[] treeArray = Generate.generateArray(size);
+                startTime = System.nanoTime();
+                ts.sort(treeArray);
+                System.out.println(Arrays.toString(treeArray));
+                endTime = System.nanoTime();
+                System.out.println("Time taken: " + (endTime - startTime));
+            }
+
+            // ARRAYLIST
+            else if (inp.equals("2"))
+            {
+                ArrayList<Container> treeList = Generate.generateArrayList(size);
+                ArrayList<Container> treeListClone = (ArrayList<Container>)treeList.clone();
+                startTime = System.nanoTime();
+                ts.sort(treeList);
+                endTime = System.nanoTime();
+                System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
+
+                // Compare to inbuilt .sort()
+                startTime = System.nanoTime();
+                Collections.sort(treeListClone);
+                endTime = System.nanoTime();
+                System.out.println("Collections.sort() time taken: " + (endTime - startTime) + " nanoseconds");
+                System.out.println(treeList);
+            }
+        }
     }
 
     private static void displayFirstMenu()
@@ -108,11 +146,11 @@ public class Menu {
         while (infiniteLoop)
         {
             System.out.println("Which sort algorithm would you like to use?");
-            System.out.println("Input 1: Bubble Sort || Input 2: Quick Sort");
+            System.out.println("Input 1: Bubble Sort || Input 2: Quick Sort || Input 3: Tree Sort");
             sc = new Scanner(System.in);
             inp = sc.nextLine();
-            if (inp.equals("1") || inp.equals("2")) return;
-            else System.out.println("ERROR! Must be 1 or 2!");
+            if (inp.equals("1") || inp.equals("2") || inp.equals("3")) return;
+            else System.out.println("ERROR! Input must be 1, 2 or 3!");
         }
     }
 
@@ -124,8 +162,8 @@ public class Menu {
             System.out.println("Input 1: Array || Input 2: ArrayList?");
             sc = new Scanner(System.in);
             inp = sc.nextLine();
-            if (inp.equals("1") || inp.equals("2")) return;
-            else System.out.println("ERROR! Must be 1 or 2!");
+            if (inp.equals("1") || inp.equals("2") || inp.equals("3")) return;
+            else System.out.println("ERROR! Input must be 1, 2 or 3!");
         }
     }
 

@@ -6,10 +6,12 @@ public class QuickSort implements Sort {
 
     public void sort(int[] array)
     {
+        System.out.println("Sorting an Array with Quick Sort...");
         quickSort(array, 0, array.length -1);
     }
 
     public void sort(ArrayList<Container> list) {
+        System.out.println("Sorting an Array List with Quick Sort...");
         quickSort(list, 0, list.size() -1);
     }
 
