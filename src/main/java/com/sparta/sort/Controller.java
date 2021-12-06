@@ -7,10 +7,18 @@ import java.util.Collections;
 public class Controller {
     private static long startTime;
     private static long endTime;
-    public static void sortArray(int[] array, String sortAlgorithm)
+    private static String beforeSort;
+    private static String afterSort;
+    private static String timeTaken;
+    private static int[] array;
+    private static ArrayList<Container> list;
+
+    // Both of these static methods time, logs with log4j2, generates an array and then sorts them.
+    public static void sortArray(int size, String sortAlgorithm)
     {
+        array = Generate.generateArray(size);
+        beforeSort = "Before Sort: " + Arrays.toString(array);
         startTime = System.nanoTime();
-        SortLog.log("Before Sort: " + Arrays.toString(array));
         switch(sortAlgorithm) {
             case "bubble":
                 BubbleSort bs = new BubbleSort();
@@ -27,25 +35,51 @@ public class Controller {
             default:
                 System.out.println("SORT ALGORITHM ARGUMENT IS WRONG!");
         }
+        // Log times for personal sort method
         endTime = System.nanoTime();
-        SortLog.log("After Sort: " + Arrays.toString(array));
-        SortLog.log("Time taken to sort array with " + sortAlgorithm + " sort: " + (endTime - startTime));
+        afterSort = "After Sort:  " + Arrays.toString(array);
+        timeTaken = "Time taken to sort array with " + sortAlgorithm + " sort: " + (endTime - startTime) + " nanoseconds";
+
+        SortLog.log(timeTaken);
+        SortLog.log(beforeSort);
+        SortLog.log(afterSort);
     }
 
-    public static void sortList(ArrayList<Container> l)
+    public static void sortList(int size, String sortAlgorithm)
     {
-        ArrayList<Container> bubbleList = Generate.generateArrayList(size);
-        ArrayList<Container> bubbleListClone = (ArrayList<Container>)bubbleList.clone();
+        list = Generate.generateArrayList(size);
+        ArrayList<Container> listClone = (ArrayList<Container>)list.clone();
+        beforeSort = "Before Sort: " + list;
         startTime = System.nanoTime();
-        bs.sort(bubbleList);
-        endTime = System.nanoTime();
-        System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
 
-        // Compare to inbuilt .sort()
-        startTime = System.nanoTime();
-        Collections.sort(bubbleListClone);
+        switch(sortAlgorithm) {
+            case "bubble":
+                BubbleSort bs = new BubbleSort();
+                bs.sort(list);
+                break;
+            case "quick":
+                QuickSort qs = new QuickSort();
+                qs.sort(list);
+                break;
+            case "tree":
+                TreeSort ts = new TreeSort();
+                ts.sort(list);
+                break;
+            default:
+                System.out.println("SORT ALGORITHM ARGUMENT IS WRONG!");
+        }
+        // Log times for personal sort method
         endTime = System.nanoTime();
-        System.out.println("Collections.sort() time taken: " + (endTime - startTime) + " nanoseconds");
-        System.out.println(bubbleList);
+        afterSort = "After Sort:  " + list;
+        timeTaken = "Time taken to sort array with personal " + sortAlgorithm + " sort algorithm: " + (endTime - startTime) + " nanoseconds";
+        SortLog.log(timeTaken);
+        SortLog.log(beforeSort);
+        SortLog.log(afterSort);
+
+        // Log times for Collections.sort()
+        startTime = System.nanoTime();
+        Collections.sort(listClone);
+        endTime = System.nanoTime();
+        SortLog.log("Time taken to sort array with Collections.sort(): " + (endTime - startTime) + " nanoseconds");
     }
 }

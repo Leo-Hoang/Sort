@@ -3,12 +3,10 @@ import java.util.*;
 
 public class Menu {
 
-    static long startTime;
-    static long endTime;
-    static Scanner sc;
-    static String inp;
-    static int size = 0;
-    static boolean infiniteLoop = true;
+    private static Scanner sc;
+    private static String inp;
+    private static int size = 0;
+    private static boolean infiniteLoop = true;
 
     public static void menu() {
 
@@ -18,113 +16,42 @@ public class Menu {
         // BUBBLE SORT
         if (inp.equals("1"))
         {
-            BubbleSort bs = new BubbleSort();
             displayThirdMenu();
 
-            // ARRAY
-            if (inp.equals("1"))
-            {
-                int[] bubbleArray = Generate.generateArray(size);
-                SortLog.log(Arrays.toString(bubbleArray));
-                startTime = System.nanoTime();
-                bs.sort(bubbleArray);
-                endTime = System.nanoTime();
-                SortLog.log("Time taken to sort array with Bubble Sort: " + (endTime - startTime));
-                SortLog.log(Arrays.toString(bubbleArray));
-            }
+            // Array
+            if (inp.equals("1")) Controller.sortArray(size, "bubble");
 
-            // ARRAYLIST
-            else if (inp.equals("2"))
-            {
-                ArrayList<Container> bubbleList = Generate.generateArrayList(size);
-                ArrayList<Container> bubbleListClone = (ArrayList<Container>)bubbleList.clone();
-                startTime = System.nanoTime();
-                bs.sort(bubbleList);
-                endTime = System.nanoTime();
-                System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
-
-                // Compare to inbuilt .sort()
-                startTime = System.nanoTime();
-                Collections.sort(bubbleListClone);
-                endTime = System.nanoTime();
-                System.out.println("Collections.sort() time taken: " + (endTime - startTime) + " nanoseconds");
-                System.out.println(bubbleList);
-            }
+            // ArrayList
+            else if (inp.equals("2")) Controller.sortList(size, "bubble");
         }
 
         // QUICK SORT
         else if (inp.equals("2"))
         {
-            QuickSort qs = new QuickSort();
             displayThirdMenu();
 
-            // ARRAY
-            if (inp.equals("1"))
-            {
-                int[] quickArray = Generate.generateArray(size);
-                startTime = System.nanoTime();
-                qs.sort(quickArray);
-                System.out.println(Arrays.toString(quickArray));
-                endTime = System.nanoTime();
-                System.out.println("Time taken: " + (endTime - startTime));
-            }
+            // Array
+            if (inp.equals("1"))  Controller.sortArray(size, "quick");
 
-            // ARRAYLIST
-            else if (inp.equals("2"))
-            {
-                ArrayList<Container> quickList = Generate.generateArrayList(size);
-                ArrayList<Container> quickListClone = (ArrayList<Container>)quickList.clone();
-                startTime = System.nanoTime();
-                qs.sort(quickList);
-                endTime = System.nanoTime();
-                System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
-
-                // Compare to inbuilt .sort()
-                startTime = System.nanoTime();
-                Collections.sort(quickListClone);
-                endTime = System.nanoTime();
-                System.out.println("Collections.sort() time taken: " + (endTime - startTime) + " nanoseconds");
-                System.out.println(quickList);
-            }
+            // ArrayList
+            else if (inp.equals("2")) Controller.sortList(size, "quick");
         }
 
         // TREE SORT
         else if (inp.equals("3"))
         {
-            TreeSort ts = new TreeSort();
             displayThirdMenu();
 
-            // ARRAY
-            if (inp.equals("1"))
-            {
-                int[] treeArray = Generate.generateArray(size);
-                startTime = System.nanoTime();
-                ts.sort(treeArray);
-                System.out.println(Arrays.toString(treeArray));
-                endTime = System.nanoTime();
-                System.out.println("Time taken: " + (endTime - startTime));
-            }
+            // Array
+            if (inp.equals("1")) Controller.sortArray(size, "tree");
 
-            // ARRAYLIST
-            else if (inp.equals("2"))
-            {
-                ArrayList<Container> treeList = Generate.generateArrayList(size);
-                ArrayList<Container> treeListClone = (ArrayList<Container>)treeList.clone();
-                startTime = System.nanoTime();
-                ts.sort(treeList);
-                endTime = System.nanoTime();
-                System.out.println("Personal algorithm time taken: " + (endTime - startTime) + " nanoseconds");
-
-                // Compare to inbuilt .sort()
-                startTime = System.nanoTime();
-                Collections.sort(treeListClone);
-                endTime = System.nanoTime();
-                System.out.println("Collections.sort() time taken: " + (endTime - startTime) + " nanoseconds");
-                System.out.println(treeList);
-            }
+            // ArrayList
+            else if (inp.equals("2")) Controller.sortList(size, "tree");
         }
     }
 
+    // All of these menu methods display the UI to the user and also gets an input. If the user does not
+    // put in a correct input, the method loops infinitely.
     private static void displayFirstMenu()
     {
         while (infiniteLoop)
@@ -162,7 +89,7 @@ public class Menu {
             System.out.println("Input 1: Array || Input 2: ArrayList?");
             sc = new Scanner(System.in);
             inp = sc.nextLine();
-            if (inp.equals("1") || inp.equals("2") || inp.equals("3")) return;
+            if (inp.equals("1") || inp.equals("2")) return;
             else System.out.println("ERROR! Input must be 1, 2 or 3!");
         }
     }
