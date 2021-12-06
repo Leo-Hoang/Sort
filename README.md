@@ -23,7 +23,7 @@ SortLog: The SortLog class is a basic class which provides the program with the 
 Main: This is the main, and calls the Menu. Nothing more, nothing less.
 
 Tests: Asides from the standard tests, I also tested Generation of an Arraylist. Also, for each of the sorting algorithm tests, the last test prove that Strings 
-can also be used for the sorting algorithms.
+can also be used for the sorting algorithms for the ArrayLists.
 
 **NOTES**:
 
